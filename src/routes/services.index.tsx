@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { GitBranch, Boxes, Anchor, Activity, ArrowRight } from "lucide-react";
+import { GitBranch, Boxes, Anchor, Activity } from "lucide-react";
 import { Section, SectionHeading, Eyebrow, CTA } from "@/components/site/Section";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { TechStackGrid } from "@/components/site/TechStack";
@@ -34,19 +34,19 @@ export const Route = createFileRoute("/services/")({
 function ServicesIndex() {
   return (
     <>
-      <Section className="pt-24">
+      <Section className="pt-16 sm:pt-20 lg:pt-24">
         <Eyebrow>services --list</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
           Four services. Every one, done deeply.
         </h1>
-        <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:mt-5 sm:text-lg">
           We deliberately don't do "cloud strategy", data engineering, or AI.
           Our practice is DevOps and Platform Engineering — that's it. Below is exactly what we deliver.
         </p>
       </Section>
 
       <Section className="pt-0">
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
           {SERVICES.map((s) => (
             <ServiceCard key={s.slug} service={s} to={LINKS[s.slug]} icon={ICONS[s.slug]} />
           ))}
@@ -55,7 +55,7 @@ function ServicesIndex() {
 
       <Section className="border-t border-border/60">
         <SectionHeading eyebrow="stack" title="One consistent toolchain across every engagement." />
-        <div className="mt-10">
+        <div className="mt-8 sm:mt-10">
           <TechStackGrid />
         </div>
       </Section>

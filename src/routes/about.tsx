@@ -40,12 +40,12 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <>
-      <Section className="pt-24">
+      <Section className="pt-16 sm:pt-20 lg:pt-24">
         <Eyebrow>./about</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
           A New Zealand DevOps consultancy — nothing more, nothing less.
         </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
           Cloud Rangers is a small, senior team based in Auckland. We work with engineering leaders
           across Aotearoa to build the pipelines, platforms, and operational muscle that let their
           teams ship — every day, without drama.
@@ -53,15 +53,15 @@ function About() {
       </Section>
 
       <Section className="pt-0">
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
           {VALUES.map((v) => {
             const Icon = v.icon;
             return (
-              <div key={v.title} className="rounded-xl border border-border bg-surface/60 p-6">
+              <div key={v.title} className="rounded-xl border border-border bg-surface/60 p-5 sm:p-6">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold">{v.title}</h3>
+                <h3 className="mt-4 text-base font-semibold sm:mt-5 sm:text-lg">{v.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{v.text}</p>
               </div>
             );

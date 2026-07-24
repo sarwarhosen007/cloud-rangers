@@ -22,27 +22,27 @@ export function ServiceCard({
   return (
     <Link
       to={to}
-      className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-surface/60 p-6 transition hover:border-primary/50 hover:bg-surface"
+      className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-surface/60 p-5 transition hover:border-primary/50 hover:bg-surface sm:p-6"
     >
-      <div className="mb-5 grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
+      <div className="mb-4 grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 sm:mb-5">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold tracking-tight">{service.title}</h3>
+      <h3 className="text-base font-semibold tracking-tight sm:text-lg">{service.title}</h3>
       <p className="mt-2 text-sm text-muted-foreground">{service.tagline}</p>
 
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-5 sm:gap-2">
         {service.tools.slice(0, 5).map((t) => (
           <span
             key={t.slug}
-            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background/60 px-2 py-1 font-mono text-[11px]"
+            className="inline-flex items-center gap-1 rounded-md border border-border bg-background/60 px-1.5 py-0.5 font-mono text-[10px] sm:gap-1.5 sm:px-2 sm:py-1 sm:text-[11px]"
           >
-            <ToolIcon tool={t} size={12} /> {t.name}
+            <ToolIcon tool={t} size={10} /> {t.name}
           </span>
         ))}
       </div>
 
-      <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-        Learn more <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+      <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary sm:mt-6 sm:text-sm">
+        Learn more <ArrowRight className="h-3 w-3 transition group-hover:translate-x-0.5 sm:h-3.5 sm:w-3.5" />
       </div>
     </Link>
   );

@@ -25,9 +25,9 @@ export const Route = createFileRoute("/work/$slug")({
     };
   },
   notFoundComponent: () => (
-    <Section className="pt-24">
+    <Section className="pt-16 sm:pt-24">
       <p className="font-mono text-sm text-primary">404 / case_study</p>
-      <h1 className="mt-3 text-3xl font-bold">Case study not found.</h1>
+      <h1 className="mt-3 text-2xl font-bold sm:text-3xl">Case study not found.</h1>
       <Link to="/work" className="mt-6 inline-flex items-center gap-1.5 text-sm text-primary">
         ← back to all case studies
       </Link>
@@ -41,31 +41,35 @@ function CaseStudyDetail() {
 
   return (
     <>
+      {/* Hero */}
       <section className="relative border-b border-border/60">
         <div className="absolute inset-0 grid-bg opacity-30" aria-hidden />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
           <Link to="/work" className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-primary">
             ← case studies
           </Link>
           <Eyebrow>{study.industry}</Eyebrow>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">{study.client}</h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{study.headline}</p>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">{study.client}</h1>
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground sm:mt-4 sm:text-lg">{study.headline}</p>
         </div>
       </section>
 
       <Section>
-        <div className="grid gap-10 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-10">
+        {/* On mobile: stacked. On lg: sidebar layout */}
+        <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
+
+          {/* Main content */}
+          <div className="space-y-8 sm:space-y-10 lg:col-span-2">
             <div>
               <h2 className="font-mono text-xs uppercase tracking-widest text-primary">Challenge</h2>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground">{study.challenge}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">{study.challenge}</p>
             </div>
 
             <div>
               <h2 className="font-mono text-xs uppercase tracking-widest text-primary">What we did</h2>
-              <ul className="mt-3 space-y-3">
+              <ul className="mt-3 space-y-2 sm:space-y-3">
                 {study.work.map((w) => (
-                  <li key={w} className="flex items-start gap-3 rounded-lg border border-border bg-surface/40 p-4">
+                  <li key={w} className="flex items-start gap-3 rounded-lg border border-border bg-surface/40 p-3 sm:p-4">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     <span className="text-sm">{w}</span>
                   </li>
@@ -75,9 +79,9 @@ function CaseStudyDetail() {
 
             <div>
               <h2 className="font-mono text-xs uppercase tracking-widest text-primary">Outcome</h2>
-              <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+              <ul className="mt-3 grid gap-2 sm:grid-cols-2 sm:gap-3">
                 {study.outcome.map((o) => (
-                  <li key={o} className="rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm">
+                  <li key={o} className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm sm:p-4">
                     {o}
                   </li>
                 ))}
@@ -85,14 +89,15 @@ function CaseStudyDetail() {
             </div>
           </div>
 
-          <aside className="lg:sticky lg:top-24 h-fit rounded-xl border border-border bg-surface/60 p-6">
+          {/* Sidebar — appears below content on mobile, sticky on desktop */}
+          <aside className="rounded-xl border border-border bg-surface/60 p-5 sm:p-6 lg:sticky lg:top-24 lg:h-fit">
             <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Tech used</h3>
             <div className="mt-4 flex flex-wrap gap-2">
               {study.tools.map((t) => (
                 <ToolChip key={t.slug} tool={t} />
               ))}
             </div>
-            <div className="mt-8 border-t border-border pt-6">
+            <div className="mt-6 border-t border-border pt-5 sm:mt-8 sm:pt-6">
               <Link
                 to="/contact"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"

@@ -5,7 +5,8 @@ export const TOOLS: Record<string, Tool> = {
   ansible: { name: "Ansible", slug: "ansible", color: "EE0000" },
   jenkins: { name: "Jenkins", slug: "jenkins", color: "D24939" },
   githubactions: { name: "GitHub Actions", slug: "githubactions", color: "2088FF" },
-  azuredevops: { name: "Azure DevOps", slug: "azuredevops", color: "0078D7" },
+  azuredevops: { name: "Azure DevOps", slug: "cloudways", color: "2C39BD" },
+  cloudways: { name: "Cloudways", slug: "cloudways", color: "2C39BD" },
   docker: { name: "Docker", slug: "docker", color: "2496ED" },
   kubernetes: { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
   helm: { name: "Helm", slug: "helm", color: "0F1689" },
@@ -45,7 +46,7 @@ export function TechStackGrid({ tools = ALL_TOOLS }: { tools?: Tool[] }) {
     <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7">
       {tools.map((t) => (
         <div
-          key={t.slug}
+          key={t.name}
           className="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface/40 p-4 transition hover:border-primary/40 hover:bg-surface"
         >
           <ToolIcon tool={t} size={28} />

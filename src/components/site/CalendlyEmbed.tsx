@@ -6,7 +6,7 @@ const CALENDLY_WIDGET_JS =
 const CALENDLY_WIDGET_CSS =
   "https://assets.calendly.com/assets/external/widget.css";
 
-/** Load Calendly's external script once. */
+/** Load Calendly's external script + CSS once per page load. */
 function useCalendlyScript() {
   useEffect(() => {
     if (document.querySelector(`script[src="${CALENDLY_WIDGET_JS}"]`)) return;
@@ -25,30 +25,35 @@ function useCalendlyScript() {
 
 // ---------------------------------------------------------------------------
 // Inline embed — renders the full calendar inline on the page
+// Responsive heights:  mobile ≤ 640px → 580px  |  sm → 640px  |  md+ → 700px
 // ---------------------------------------------------------------------------
 export function CalendlyInline({ url }: { url: string }) {
   useCalendlyScript();
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-border bg-surface/60">
+    <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-border bg-surface/60 w-full">
       {/* Header bar */}
-      <div className="flex items-center gap-3 border-b border-border/60 px-6 py-4">
+      <div className="flex items-center gap-3 border-b border-border/60 px-4 sm:px-6 py-3 sm:py-4">
         <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
           <Calendar className="h-4 w-4" />
         </span>
         <div>
           <p className="text-sm font-semibold">Book a Discovery Call</p>
-          <p className="font-mono text-[11px] text-muted-foreground">
+          <p className="font-mono text-[10px] sm:text-[11px] text-muted-foreground">
             30 minutes · free · no obligation
           </p>
         </div>
       </div>
 
-      {/* Calendly widget */}
+      {/* Calendly widget — responsive height via CSS custom property */}
       <div
         className="calendly-inline-widget w-full"
         data-url={`${url}?hide_gdpr_banner=1&background_color=0d0d0f&text_color=f0f0f0&primary_color=22c55e`}
-        style={{ minWidth: "320px", height: "700px" }}
+        style={{
+          minWidth: "280px",
+          // 580px on mobile, 640px tablet, 700px desktop
+          height: "clamp(580px, 70svh, 700px)",
+        }}
       />
     </div>
   );
