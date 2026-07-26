@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
 import { Section, Eyebrow, SectionHeading, Terminal, CTA } from "@/components/site/Section";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { TechStackGrid } from "@/components/site/TechStack";
@@ -17,35 +18,37 @@ import {
 import { createFileRoute } from "@tanstack/react-router";
 
 const ICONS: Record<string, React.ReactNode> = {
-  "cloud-strategy":          <Cloud className="h-5 w-5" />,
-  "infrastructure-as-code":  <Boxes className="h-5 w-5" />,
-  "devops-automation":       <GitBranch className="h-5 w-5" />,
-  "platform-engineering":    <Anchor className="h-5 w-5" />,
-  "data-ai":                 <Database className="h-5 w-5" />,
-  "cyber-security":          <ShieldCheck className="h-5 w-5" />,
-  "managed-services":        <MonitorDot className="h-5 w-5" />,
+  "cloud-strategy": <Cloud className="h-5 w-5" />,
+  "infrastructure-as-code": <Boxes className="h-5 w-5" />,
+  "devops-automation": <GitBranch className="h-5 w-5" />,
+  "platform-engineering": <Anchor className="h-5 w-5" />,
+  "data-ai": <Database className="h-5 w-5" />,
+  "cyber-security": <ShieldCheck className="h-5 w-5" />,
+  "managed-services": <MonitorDot className="h-5 w-5" />,
   "application-modernisation": <Layers className="h-5 w-5" />,
 };
 
 const SERVICE_LINKS: Record<string, string> = {
-  "cloud-strategy":            "/services/cloud-strategy",
-  "infrastructure-as-code":    "/services/infrastructure-as-code",
-  "devops-automation":         "/services/devops-automation",
-  "platform-engineering":      "/services/platform-engineering",
-  "data-ai":                   "/services/data-ai",
-  "cyber-security":            "/services/cyber-security",
-  "managed-services":          "/services/managed-services",
+  "cloud-strategy": "/services/cloud-strategy",
+  "infrastructure-as-code": "/services/infrastructure-as-code",
+  "devops-automation": "/services/devops-automation",
+  "platform-engineering": "/services/platform-engineering",
+  "data-ai": "/services/data-ai",
+  "cyber-security": "/services/cyber-security",
+  "managed-services": "/services/managed-services",
   "application-modernisation": "/services/application-modernisation",
 };
 
 const CLIENTS: { name: string; logo: string }[] = [
-  { name: "Plant & Food Research", logo: "/client/the_new_zealand_institute_for_plant_and_food_research_limited_logo.jfif" },
+  { name: "New Zealand Plant & Food Research", logo: "/client/the_new_zealand_institute_for_plant_and_food_research_limited_logo.jfif" },
   { name: "Bioeconomy Science", logo: "/client/the_new_zealand_institute_for_bioeconomy_science_logo.jfif" },
   { name: "Kiwifruit Breeding Centre", logo: "/client/kiwifruit_breeding_centre_logo.jfif" },
-  { name: "DataEngine NZ", logo: "/client/dataenginenz_logo.jfif" },
+  { name: "DataEngine", logo: "/client/dataenginenz_logo.jfif" },
   { name: "Synergia", logo: "/client/synergia_ltd_logo.jfif" },
-  { name: "ArchiPro", logo: "/client/archipro-logo-parnell.jpg.webp" },
+  { name: "ArchiPro", logo: "/client/archipro-logo-parnell.png" },
   { name: "Assure Quality", logo: "/client/asurequality_logo.jfif" },
+  { name: 'Worksafe NZ', logo: '/client/work-safe-nz.jpeg' },
+  { name: 'Little Q', logo: '/client/little-q.png' },
   { name: "Digital Sphere", logo: "/client/digital-sphere.jfif" },
   { name: "Phoenix Property", logo: "/client/phoenix-property-logo3.png" },
 ];
@@ -63,6 +66,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const [marquePaused, setMarqueePaused] = useState(false);
+
   return (
     <>
       {/* HERO */}
@@ -130,33 +135,83 @@ function Home() {
         </div>
       </section>
 
-      {/* CLIENTS */}
-      <section className="border-b border-border/60 bg-surface/30 py-8 sm:py-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-center font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:text-[11px]">
-            Trusted by engineering teams across Aotearoa
+      {/* CLIENTS — infinite marquee */}
+      <section className="relative overflow-hidden border-y border-border/40 py-10 sm:py-14">
+        {/* Background glow */}
+        <div className="pointer-events-none absolute inset-0 bg-surface/20" aria-hidden />
+        <div className="pointer-events-none absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/40 to-transparent" aria-hidden />
+        <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/20 to-transparent" aria-hidden />
+
+        {/* Headline */}
+        <div className="relative mb-8 text-center sm:mb-10">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/70 sm:text-[11px]">
+            trusted by
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:mt-8 sm:gap-6">
-            {CLIENTS.map((c) => (
-              <div
-                key={c.name}
-                className="group flex w-32 flex-col items-center gap-2 rounded-xl border border-border/60 bg-background/60 px-3 py-3 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:shadow-md sm:w-36"
-                title={c.name}
-              >
-                <div className="flex h-10 w-full items-center justify-center">
-                  <img
-                    src={c.logo}
-                    alt={c.name}
-                    className="max-h-full max-w-full object-contain"
-                  />
+          <p className="mt-1.5 text-sm font-semibold tracking-tight text-foreground sm:text-base">
+            Engineering teams across <span className="text-primary">Aotearoa New Zealand</span>
+          </p>
+        </div>
+
+        {/* Marquee row 1 — scrolls left */}
+        <div className="relative">
+          {/* Left/right fade masks */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-background to-transparent sm:w-32" aria-hidden />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background to-transparent sm:w-32" aria-hidden />
+
+          <div
+            className="flex overflow-hidden cursor-pointer"
+            onMouseEnter={() => setMarqueePaused(true)}
+            onMouseLeave={() => setMarqueePaused(false)}
+          >
+            <div
+              className="flex shrink-0 items-center gap-5 pr-5"
+              style={{
+                animation: "marquee-ltr 35s linear infinite",
+                animationPlayState: marquePaused ? "paused" : "running",
+              }}
+            >
+              {[...CLIENTS, ...CLIENTS].map((c, i) => (
+                <div
+                  key={`r1-${i}`}
+                  className="group flex w-44 shrink-0 flex-col items-center gap-3 rounded-2xl border border-border/50 bg-background/70 px-4 py-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-surface hover:shadow-primary/10 hover:shadow-md sm:w-48"
+                  title={c.name}
+                >
+                  <div className="flex h-10 w-full items-center justify-center opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0">
+                    <img src={c.logo} alt={c.name} className="max-h-full max-w-full object-contain" loading="lazy" />
+                  </div>
+                  <span className="text-center text-[11px] font-medium leading-snug text-foreground/70 transition-colors duration-300 group-hover:text-foreground sm:text-xs">
+                    {c.name}
+                  </span>
                 </div>
-                <span className="text-center font-mono text-[9px] leading-tight text-foreground/60 sm:text-[10px]">
-                  {c.name}
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* Stats strip */}
+        <div className="relative mt-10 flex justify-center">
+          <dl className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 divide-x divide-border/40 sm:gap-x-10">
+            {[
+              { v: "11+", k: "Clients" },
+              { v: "100%", k: "NZ-based" },
+              { v: "24×7", k: "On-call" },
+              { v: "5★", k: "Rated" },
+            ].map((s, i) => (
+              <div key={s.k} className={`flex flex-col items-center px-5 ${i === 0 ? "" : ""}`}>
+                <dd className="text-xl font-bold text-primary sm:text-2xl">{s.v}</dd>
+                <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground sm:text-[11px]">{s.k}</dt>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        {/* CSS keyframes injected inline */}
+        <style>{`
+          @keyframes marquee-ltr {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
       </section>
 
       {/* SERVICES */}
