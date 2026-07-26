@@ -48,25 +48,25 @@ export function SectionHeading({
 
 export function Terminal({ lines }: { lines: Array<{ prompt?: boolean; text: string; comment?: boolean }> }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-terminal font-mono text-[13px] shadow-2xl shadow-black/40">
-      <div className="flex items-center gap-1.5 border-b border-white/5 bg-black/30 px-4 py-2.5">
+    <div className="overflow-hidden rounded-xl border border-border bg-terminal font-mono text-[13px] shadow-2xl shadow-black/20">
+      <div className="flex items-center gap-1.5 border-b border-border/30 bg-foreground/5 px-4 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-        <span className="ml-3 text-[11px] text-white/40">~/cloudrangers/deploy</span>
+        <span className="ml-3 text-[11px] text-terminal-foreground/50">~/cloudrangers/deploy</span>
       </div>
       <pre className="overflow-x-auto p-5 leading-relaxed text-terminal-foreground">
         {lines.map((l, i) => (
           <div key={i}>
             {l.comment ? (
-              <span className="text-white/40"># {l.text}</span>
+              <span className="text-terminal-foreground/40"># {l.text}</span>
             ) : l.prompt ? (
               <>
                 <span className="text-primary">$</span>{" "}
-                <span className="text-white/90">{l.text}</span>
+                <span className="text-terminal-foreground/90">{l.text}</span>
               </>
             ) : (
-              <span className="text-white/60">{l.text}</span>
+              <span className="text-terminal-foreground/60">{l.text}</span>
             )}
           </div>
         ))}
@@ -99,7 +99,7 @@ export function CTA({
             </a>
             <a
               href="mailto:info@cloudrangers.co.nz"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-white/5"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-foreground/5"
             >
               info@cloudrangers.co.nz
             </a>

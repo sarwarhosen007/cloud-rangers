@@ -3,6 +3,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -38,6 +39,10 @@
 
 :root {
   --radius: 0.625rem;
+}
+
+.dark {
+  color-scheme: dark;
   /* Dark navy technical aesthetic */
   --background: oklch(0.16 0.03 250);
   --foreground: oklch(0.96 0.005 250);
@@ -64,14 +69,39 @@
   --terminal-foreground: oklch(0.88 0.02 180);
 }
 
-.dark {
-  --background: oklch(0.16 0.03 250);
-  --foreground: oklch(0.96 0.005 250);
+
+
+.light {
+  color-scheme: light;
+  /* Clean, professional light palette */
+  --background: oklch(0.98 0.004 250);
+  --foreground: oklch(0.18 0.04 255);
+  --surface: oklch(0.94 0.008 252);
+  --surface-2: oklch(0.91 0.012 252);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 255);
+  --primary: oklch(0.55 0.18 210);
+  --primary-foreground: oklch(0.99 0.002 250);
+  --secondary: oklch(0.92 0.012 252);
+  --secondary-foreground: oklch(0.22 0.04 255);
+  --muted: oklch(0.93 0.008 252);
+  --muted-foreground: oklch(0.52 0.03 255);
+  --accent: oklch(0.55 0.18 210);
+  --accent-foreground: oklch(0.99 0.002 250);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0.002 250);
+  --border: oklch(0 0 0 / 10%);
+  --input: oklch(0 0 0 / 8%);
+  --ring: oklch(0.55 0.18 210);
+  --terminal: oklch(0.95 0.008 252);
+  --terminal-foreground: oklch(0.25 0.06 210);
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   * {
     border-color: var(--color-border);
@@ -81,6 +111,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   h1, h2, h3, h4 {
     letter-spacing: -0.02em;
@@ -94,12 +125,30 @@
   background-size: 44px 44px;
 }
 
+.light .grid-bg, .light.grid-bg {
+  background-image:
+    linear-gradient(to right, oklch(0 0 0 / 5%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0 0 0 / 5%) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
 @utility glow-primary {
   box-shadow: 0 0 0 1px oklch(0.82 0.16 195 / 30%), 0 10px 40px -10px oklch(0.82 0.16 195 / 35%);
 }
 
+.light .glow-primary, .light.glow-primary {
+  box-shadow: 0 0 0 1px oklch(0.55 0.18 210 / 25%), 0 10px 40px -10px oklch(0.55 0.18 210 / 20%);
+}
+
 @utility text-gradient {
   background: linear-gradient(135deg, oklch(0.96 0.005 250) 0%, oklch(0.82 0.16 195) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.light .text-gradient, .light.text-gradient {
+  background: linear-gradient(135deg, oklch(0.18 0.04 255) 0%, oklch(0.45 0.2 210) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

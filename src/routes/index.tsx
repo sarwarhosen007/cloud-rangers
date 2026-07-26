@@ -90,7 +90,7 @@ function Home() {
               </Link>
               <Link
                 to="/work"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-white/5 sm:px-5 sm:py-3"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-foreground/5 sm:px-5 sm:py-3"
               >
                 See Our Work
               </Link>
@@ -150,7 +150,7 @@ function Home() {
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                <span className="text-center font-mono text-[9px] leading-tight text-white sm:text-[10px]">
+                <span className="text-center font-mono text-[9px] leading-tight text-foreground/60 sm:text-[10px]">
                   {c.name}
                 </span>
               </div>
