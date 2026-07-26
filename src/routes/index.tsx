@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Section, Eyebrow, SectionHeading, Terminal, CTA } from "@/components/site/Section";
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { TechStackGrid } from "@/components/site/TechStack";
@@ -76,47 +76,58 @@ function Home() {
         <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-14 lg:py-32 lg:px-8">
           <div className="relative">
-            <Eyebrow>whoami — cloud_rangers.nz</Eyebrow>
-            <h1 className="mt-4 text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl">
-              <span className="text-gradient">Enterprise Cloud Consulting</span>{" "}
-              for teams that move fast, safely.
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Cloud strategy, DevOps, platform engineering, data & AI, cyber security,
-              and 24×7 managed operations — delivered by New Zealand's leading cloud consultancy.
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 sm:px-5 sm:py-3"
-              >
-                Book a Discovery Call <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/work"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-foreground/5 sm:px-5 sm:py-3"
-              >
-                See Our Work
-              </Link>
+            <div className="hero-item" style={{ "--hero-delay": "0ms" } as CSSProperties}>
+              <Eyebrow>whoami — cloud_rangers.nz</Eyebrow>
             </div>
-
-            <dl className="mt-10 grid max-w-xs grid-cols-3 gap-4 sm:max-w-md sm:gap-6">
-              {[
-                { k: "MTTR", v: "minutes" },
-                { k: "Deploys", v: "on-demand" },
-                { k: "On-call", v: "24×7" },
-              ].map((s) => (
-                <div key={s.k}>
-                  <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{s.k}</dt>
-                  <dd className="mt-1 text-base font-semibold text-primary sm:text-lg">{s.v}</dd>
-                </div>
-              ))}
-            </dl>
+            <div className="hero-item" style={{ "--hero-delay": "100ms" } as CSSProperties}>
+              <h1 className="mt-4 text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl">
+                <span className="text-gradient">Enterprise Cloud Consulting</span>{" "}
+                for teams that move fast, safely.
+              </h1>
+            </div>
+            <div className="hero-item" style={{ "--hero-delay": "220ms" } as CSSProperties}>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Cloud strategy, DevOps, platform engineering, data &amp; AI, cyber security,
+                and 24×7 managed operations — delivered by New Zealand's leading cloud consultancy.
+              </p>
+            </div>
+            <div className="hero-item" style={{ "--hero-delay": "340ms" } as CSSProperties}>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 sm:px-5 sm:py-3"
+                >
+                  Book a Discovery Call <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/work"
+                  className="inline-flex items-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-foreground/5 sm:px-5 sm:py-3"
+                >
+                  See Our Work
+                </Link>
+              </div>
+            </div>
+            <div className="hero-item" style={{ "--hero-delay": "460ms" } as CSSProperties}>
+              <dl className="mt-10 grid max-w-xs grid-cols-3 gap-4 sm:max-w-md sm:gap-6">
+                {[
+                  { k: "MTTR", v: "minutes" },
+                  { k: "Deploys", v: "on-demand" },
+                  { k: "On-call", v: "24×7" },
+                ].map((s) => (
+                  <div key={s.k}>
+                    <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{s.k}</dt>
+                    <dd className="mt-1 text-base font-semibold text-primary sm:text-lg">{s.v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
 
           {/* Terminal — hidden on mobile, shown md+ */}
-          <div className="relative hidden sm:block lg:pl-6">
+          <div
+            className="slide-right in-view relative hidden sm:block lg:pl-6"
+            style={{ "--anim-delay": "300ms" } as CSSProperties}
+          >
             <Terminal
               lines={[
                 { comment: true, text: "Deploy on merge to main" },
@@ -227,12 +238,13 @@ function Home() {
           </Link>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-          {PRIMARY_SERVICES.map((s) => (
+          {PRIMARY_SERVICES.map((s, i) => (
             <ServiceCard
               key={s.slug}
               service={s}
               to={SERVICE_LINKS[s.slug]}
               icon={ICONS[s.slug]}
+              delay={i * 80}
             />
           ))}
         </div>

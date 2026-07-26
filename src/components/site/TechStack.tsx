@@ -1,3 +1,6 @@
+import { type CSSProperties } from "react";
+import { useInView } from "@/hooks/use-in-view";
+
 export type Tool = { name: string; slug: string; color: string };
 
 export const TOOLS: Record<string, Tool> = {
@@ -27,7 +30,7 @@ export const TOOLS: Record<string, Tool> = {
   microsoftazure: { name: "Azure", slug: "cloudways", color: "0078D4" },
   azurekubernetesservice: { name: "AKS", slug: "cloudways", color: "0078D4" },
   powerplatform: { name: "Power Platform", slug: "cloudways", color: "742774" },
-  // Data & AI 
+  // Data & AI
   apachekafka: { name: "Kafka", slug: "apachekafka", color: "231F20" },
   snowflake: { name: "Snowflake", slug: "snowflake", color: "29B5E8" },
   databricks: { name: "Databricks", slug: "databricks", color: "FF3621" },
@@ -62,17 +65,28 @@ export function ToolChip({ tool }: { tool: Tool }) {
   );
 }
 
+/** Individual animated tool tile — extracted so hook rules are followed */
+function ToolTile({ tool, delay }: { tool: Tool; delay: number }) {
+  const [ref, inView] = useInView();
+  return (
+    <div
+      ref={ref}
+      className={`scale-up${inView ? " in-view" : ""}`}
+      style={{ "--anim-delay": `${delay}ms` } as CSSProperties}
+    >
+      <div className="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface/40 p-4 transition hover:border-primary/40 hover:bg-surface hover:scale-105">
+        <ToolIcon tool={tool} size={28} />
+        <span className="font-mono text-[11px] text-muted-foreground">{tool.name}</span>
+      </div>
+    </div>
+  );
+}
+
 export function TechStackGrid({ tools = ALL_TOOLS }: { tools?: Tool[] }) {
   return (
     <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7">
-      {tools.map((t) => (
-        <div
-          key={t.name}
-          className="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface/40 p-4 transition hover:border-primary/40 hover:bg-surface"
-        >
-          <ToolIcon tool={t} size={28} />
-          <span className="font-mono text-[11px] text-muted-foreground">{t.name}</span>
-        </div>
+      {tools.map((t, i) => (
+        <ToolTile key={t.name} tool={t} delay={i * 35} />
       ))}
     </div>
   );

@@ -1,4 +1,6 @@
-import { type ReactNode } from "react";
+import { type ReactNode, type CSSProperties } from "react";
+import { useInView } from "@/hooks/use-in-view";
+import { Reveal } from "@/components/site/Reveal";
 
 export function Section({
   children,
@@ -35,8 +37,12 @@ export function SectionHeading({
   description?: string;
   align?: "left" | "center";
 }) {
+  const [ref, inView] = useInView();
   return (
-    <div className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""}`}>
+    <div
+      ref={ref}
+      className={`fade-up max-w-2xl ${inView ? "in-view" : ""} ${align === "center" ? "mx-auto text-center" : ""}`}
+    >
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
       {description && (
@@ -84,28 +90,30 @@ export function CTA({
 }) {
   return (
     <Section>
-      <div className="relative overflow-hidden rounded-xl border border-border bg-surface p-8 sm:rounded-2xl sm:p-10 md:p-14">
-        <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
-        <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl" aria-hidden />
-        <div className="relative">
-          <h2 className="max-w-2xl text-2xl font-bold tracking-tight sm:text-3xl sm:text-4xl">{title}</h2>
-          <p className="mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">{description}</p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
-            >
-              Book a Discovery Call
-            </a>
-            <a
-              href="mailto:info@cloudrangers.co.nz"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-foreground/5"
-            >
-              info@cloudrangers.co.nz
-            </a>
+      <Reveal variant="scale-up">
+        <div className="relative overflow-hidden rounded-xl border border-border bg-surface p-8 sm:rounded-2xl sm:p-10 md:p-14">
+          <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
+          <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl" aria-hidden />
+          <div className="relative">
+            <h2 className="max-w-2xl text-2xl font-bold tracking-tight sm:text-3xl sm:text-4xl">{title}</h2>
+            <p className="mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">{description}</p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+              >
+                Book a Discovery Call
+              </a>
+              <a
+                href="mailto:info@cloudrangers.co.nz"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-transparent px-4 py-2.5 text-sm font-medium hover:bg-foreground/5"
+              >
+                info@cloudrangers.co.nz
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }

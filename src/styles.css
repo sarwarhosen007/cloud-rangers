@@ -163,3 +163,51 @@
 @keyframes reveal-in {
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ─── Scroll-reveal (IntersectionObserver-driven) ──────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity   0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--anim-delay, 0ms);
+}
+.scale-up {
+  opacity: 0;
+  transform: scale(0.94) translateY(14px);
+  transition:
+    opacity   0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--anim-delay, 0ms);
+}
+.slide-right {
+  opacity: 0;
+  transform: translateX(-22px);
+  transition:
+    opacity   0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--anim-delay, 0ms);
+}
+.fade-up.in-view,
+.scale-up.in-view,
+.slide-right.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Hero one-shot entrance (CSS animation, always visible) */
+.hero-item {
+  opacity: 0;
+  animation: reveal-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--hero-delay, 0ms) forwards;
+}
+
+/* ─── Navbar slide-down (plays once on mount) ────────────── */
+.nav-entrance {
+  animation: nav-slide-down 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes nav-slide-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
