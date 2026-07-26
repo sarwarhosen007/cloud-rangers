@@ -40,6 +40,18 @@ export function ServiceDetail({
           <div className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base">
             {service.overview}
           </div>
+          {service.capabilities && service.capabilities.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-2 sm:mt-8">
+              {service.capabilities.map((cap) => (
+                <span
+                  key={cap}
+                  className="rounded-full border border-border/60 bg-surface/40 px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
+                >
+                  {cap}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

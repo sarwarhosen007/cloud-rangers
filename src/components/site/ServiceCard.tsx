@@ -16,7 +16,7 @@ export function ServiceCard({
   icon,
 }: {
   service: ServiceCardData;
-  to: "/services/cicd" | "/services/infrastructure-as-code" | "/services/kubernetes-platform-engineering" | "/services/observability-managed-ops";
+  to: string;
   icon: ReactNode;
 }) {
   return (

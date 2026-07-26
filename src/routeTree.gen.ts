@@ -16,10 +16,17 @@ import { Route as HowWeWorkRouteImport } from './routes/how-we-work'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesApplicationModernisationRouteImport } from './routes/services.application-modernisation'
 import { Route as ServicesCicdRouteImport } from './routes/services.cicd'
+import { Route as ServicesCloudStrategyRouteImport } from './routes/services.cloud-strategy'
+import { Route as ServicesCyberSecurityRouteImport } from './routes/services.cyber-security'
+import { Route as ServicesDataAiRouteImport } from './routes/services.data-ai'
+import { Route as ServicesDevopsAutomationRouteImport } from './routes/services.devops-automation'
 import { Route as ServicesInfrastructureAsCodeRouteImport } from './routes/services.infrastructure-as-code'
 import { Route as ServicesKubernetesPlatformEngineeringRouteImport } from './routes/services.kubernetes-platform-engineering'
+import { Route as ServicesManagedServicesRouteImport } from './routes/services.managed-services'
 import { Route as ServicesObservabilityManagedOpsRouteImport } from './routes/services.observability-managed-ops'
+import { Route as ServicesPlatformEngineeringRouteImport } from './routes/services.platform-engineering'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
@@ -58,11 +65,38 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesApplicationModernisationRoute =
+  ServicesApplicationModernisationRouteImport.update({
+    id: '/application-modernisation',
+    path: '/application-modernisation',
+    getParentRoute: () => ServicesRoute,
+  } as any)
 const ServicesCicdRoute = ServicesCicdRouteImport.update({
   id: '/cicd',
   path: '/cicd',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesCloudStrategyRoute = ServicesCloudStrategyRouteImport.update({
+  id: '/cloud-strategy',
+  path: '/cloud-strategy',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCyberSecurityRoute = ServicesCyberSecurityRouteImport.update({
+  id: '/cyber-security',
+  path: '/cyber-security',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesDataAiRoute = ServicesDataAiRouteImport.update({
+  id: '/data-ai',
+  path: '/data-ai',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesDevopsAutomationRoute =
+  ServicesDevopsAutomationRouteImport.update({
+    id: '/devops-automation',
+    path: '/devops-automation',
+    getParentRoute: () => ServicesRoute,
+  } as any)
 const ServicesInfrastructureAsCodeRoute =
   ServicesInfrastructureAsCodeRouteImport.update({
     id: '/infrastructure-as-code',
@@ -75,10 +109,21 @@ const ServicesKubernetesPlatformEngineeringRoute =
     path: '/kubernetes-platform-engineering',
     getParentRoute: () => ServicesRoute,
   } as any)
+const ServicesManagedServicesRoute = ServicesManagedServicesRouteImport.update({
+  id: '/managed-services',
+  path: '/managed-services',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesObservabilityManagedOpsRoute =
   ServicesObservabilityManagedOpsRouteImport.update({
     id: '/observability-managed-ops',
     path: '/observability-managed-ops',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesPlatformEngineeringRoute =
+  ServicesPlatformEngineeringRouteImport.update({
+    id: '/platform-engineering',
+    path: '/platform-engineering',
     getParentRoute: () => ServicesRoute,
   } as any)
 const WorkIndexRoute = WorkIndexRouteImport.update({
@@ -99,10 +144,17 @@ export interface FileRoutesByFullPath {
   '/how-we-work': typeof HowWeWorkRoute
   '/services': typeof ServicesRouteWithChildren
   '/work': typeof WorkRouteWithChildren
+  '/services/application-modernisation': typeof ServicesApplicationModernisationRoute
   '/services/cicd': typeof ServicesCicdRoute
+  '/services/cloud-strategy': typeof ServicesCloudStrategyRoute
+  '/services/cyber-security': typeof ServicesCyberSecurityRoute
+  '/services/data-ai': typeof ServicesDataAiRoute
+  '/services/devops-automation': typeof ServicesDevopsAutomationRoute
   '/services/infrastructure-as-code': typeof ServicesInfrastructureAsCodeRoute
   '/services/kubernetes-platform-engineering': typeof ServicesKubernetesPlatformEngineeringRoute
+  '/services/managed-services': typeof ServicesManagedServicesRoute
   '/services/observability-managed-ops': typeof ServicesObservabilityManagedOpsRoute
+  '/services/platform-engineering': typeof ServicesPlatformEngineeringRoute
   '/work/$slug': typeof WorkSlugRoute
   '/services/': typeof ServicesIndexRoute
   '/work/': typeof WorkIndexRoute
@@ -112,10 +164,17 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/how-we-work': typeof HowWeWorkRoute
+  '/services/application-modernisation': typeof ServicesApplicationModernisationRoute
   '/services/cicd': typeof ServicesCicdRoute
+  '/services/cloud-strategy': typeof ServicesCloudStrategyRoute
+  '/services/cyber-security': typeof ServicesCyberSecurityRoute
+  '/services/data-ai': typeof ServicesDataAiRoute
+  '/services/devops-automation': typeof ServicesDevopsAutomationRoute
   '/services/infrastructure-as-code': typeof ServicesInfrastructureAsCodeRoute
   '/services/kubernetes-platform-engineering': typeof ServicesKubernetesPlatformEngineeringRoute
+  '/services/managed-services': typeof ServicesManagedServicesRoute
   '/services/observability-managed-ops': typeof ServicesObservabilityManagedOpsRoute
+  '/services/platform-engineering': typeof ServicesPlatformEngineeringRoute
   '/work/$slug': typeof WorkSlugRoute
   '/services': typeof ServicesIndexRoute
   '/work': typeof WorkIndexRoute
@@ -128,10 +187,17 @@ export interface FileRoutesById {
   '/how-we-work': typeof HowWeWorkRoute
   '/services': typeof ServicesRouteWithChildren
   '/work': typeof WorkRouteWithChildren
+  '/services/application-modernisation': typeof ServicesApplicationModernisationRoute
   '/services/cicd': typeof ServicesCicdRoute
+  '/services/cloud-strategy': typeof ServicesCloudStrategyRoute
+  '/services/cyber-security': typeof ServicesCyberSecurityRoute
+  '/services/data-ai': typeof ServicesDataAiRoute
+  '/services/devops-automation': typeof ServicesDevopsAutomationRoute
   '/services/infrastructure-as-code': typeof ServicesInfrastructureAsCodeRoute
   '/services/kubernetes-platform-engineering': typeof ServicesKubernetesPlatformEngineeringRoute
+  '/services/managed-services': typeof ServicesManagedServicesRoute
   '/services/observability-managed-ops': typeof ServicesObservabilityManagedOpsRoute
+  '/services/platform-engineering': typeof ServicesPlatformEngineeringRoute
   '/work/$slug': typeof WorkSlugRoute
   '/services/': typeof ServicesIndexRoute
   '/work/': typeof WorkIndexRoute
@@ -145,10 +211,17 @@ export interface FileRouteTypes {
     | '/how-we-work'
     | '/services'
     | '/work'
+    | '/services/application-modernisation'
     | '/services/cicd'
+    | '/services/cloud-strategy'
+    | '/services/cyber-security'
+    | '/services/data-ai'
+    | '/services/devops-automation'
     | '/services/infrastructure-as-code'
     | '/services/kubernetes-platform-engineering'
+    | '/services/managed-services'
     | '/services/observability-managed-ops'
+    | '/services/platform-engineering'
     | '/work/$slug'
     | '/services/'
     | '/work/'
@@ -158,10 +231,17 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/how-we-work'
+    | '/services/application-modernisation'
     | '/services/cicd'
+    | '/services/cloud-strategy'
+    | '/services/cyber-security'
+    | '/services/data-ai'
+    | '/services/devops-automation'
     | '/services/infrastructure-as-code'
     | '/services/kubernetes-platform-engineering'
+    | '/services/managed-services'
     | '/services/observability-managed-ops'
+    | '/services/platform-engineering'
     | '/work/$slug'
     | '/services'
     | '/work'
@@ -173,10 +253,17 @@ export interface FileRouteTypes {
     | '/how-we-work'
     | '/services'
     | '/work'
+    | '/services/application-modernisation'
     | '/services/cicd'
+    | '/services/cloud-strategy'
+    | '/services/cyber-security'
+    | '/services/data-ai'
+    | '/services/devops-automation'
     | '/services/infrastructure-as-code'
     | '/services/kubernetes-platform-engineering'
+    | '/services/managed-services'
     | '/services/observability-managed-ops'
+    | '/services/platform-engineering'
     | '/work/$slug'
     | '/services/'
     | '/work/'
@@ -242,11 +329,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/application-modernisation': {
+      id: '/services/application-modernisation'
+      path: '/application-modernisation'
+      fullPath: '/services/application-modernisation'
+      preLoaderRoute: typeof ServicesApplicationModernisationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/cicd': {
       id: '/services/cicd'
       path: '/cicd'
       fullPath: '/services/cicd'
       preLoaderRoute: typeof ServicesCicdRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/cloud-strategy': {
+      id: '/services/cloud-strategy'
+      path: '/cloud-strategy'
+      fullPath: '/services/cloud-strategy'
+      preLoaderRoute: typeof ServicesCloudStrategyRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/cyber-security': {
+      id: '/services/cyber-security'
+      path: '/cyber-security'
+      fullPath: '/services/cyber-security'
+      preLoaderRoute: typeof ServicesCyberSecurityRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/data-ai': {
+      id: '/services/data-ai'
+      path: '/data-ai'
+      fullPath: '/services/data-ai'
+      preLoaderRoute: typeof ServicesDataAiRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/devops-automation': {
+      id: '/services/devops-automation'
+      path: '/devops-automation'
+      fullPath: '/services/devops-automation'
+      preLoaderRoute: typeof ServicesDevopsAutomationRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/infrastructure-as-code': {
@@ -263,11 +385,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesKubernetesPlatformEngineeringRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/managed-services': {
+      id: '/services/managed-services'
+      path: '/managed-services'
+      fullPath: '/services/managed-services'
+      preLoaderRoute: typeof ServicesManagedServicesRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/observability-managed-ops': {
       id: '/services/observability-managed-ops'
       path: '/observability-managed-ops'
       fullPath: '/services/observability-managed-ops'
       preLoaderRoute: typeof ServicesObservabilityManagedOpsRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/platform-engineering': {
+      id: '/services/platform-engineering'
+      path: '/platform-engineering'
+      fullPath: '/services/platform-engineering'
+      preLoaderRoute: typeof ServicesPlatformEngineeringRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/work/': {
@@ -288,19 +424,33 @@ declare module '@tanstack/react-router' {
 }
 
 interface ServicesRouteChildren {
+  ServicesApplicationModernisationRoute: typeof ServicesApplicationModernisationRoute
   ServicesCicdRoute: typeof ServicesCicdRoute
+  ServicesCloudStrategyRoute: typeof ServicesCloudStrategyRoute
+  ServicesCyberSecurityRoute: typeof ServicesCyberSecurityRoute
+  ServicesDataAiRoute: typeof ServicesDataAiRoute
+  ServicesDevopsAutomationRoute: typeof ServicesDevopsAutomationRoute
   ServicesInfrastructureAsCodeRoute: typeof ServicesInfrastructureAsCodeRoute
   ServicesKubernetesPlatformEngineeringRoute: typeof ServicesKubernetesPlatformEngineeringRoute
+  ServicesManagedServicesRoute: typeof ServicesManagedServicesRoute
   ServicesObservabilityManagedOpsRoute: typeof ServicesObservabilityManagedOpsRoute
+  ServicesPlatformEngineeringRoute: typeof ServicesPlatformEngineeringRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesApplicationModernisationRoute: ServicesApplicationModernisationRoute,
   ServicesCicdRoute: ServicesCicdRoute,
+  ServicesCloudStrategyRoute: ServicesCloudStrategyRoute,
+  ServicesCyberSecurityRoute: ServicesCyberSecurityRoute,
+  ServicesDataAiRoute: ServicesDataAiRoute,
+  ServicesDevopsAutomationRoute: ServicesDevopsAutomationRoute,
   ServicesInfrastructureAsCodeRoute: ServicesInfrastructureAsCodeRoute,
   ServicesKubernetesPlatformEngineeringRoute:
     ServicesKubernetesPlatformEngineeringRoute,
+  ServicesManagedServicesRoute: ServicesManagedServicesRoute,
   ServicesObservabilityManagedOpsRoute: ServicesObservabilityManagedOpsRoute,
+  ServicesPlatformEngineeringRoute: ServicesPlatformEngineeringRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 

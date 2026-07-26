@@ -1,20 +1,41 @@
 export type Tool = { name: string; slug: string; color: string };
 
 export const TOOLS: Record<string, Tool> = {
-  terraform: { name: "Terraform", slug: "terraform", color: "7B42BC" },
-  ansible: { name: "Ansible", slug: "ansible", color: "EE0000" },
-  jenkins: { name: "Jenkins", slug: "jenkins", color: "D24939" },
-  githubactions: { name: "GitHub Actions", slug: "githubactions", color: "2088FF" },
-  azuredevops: { name: "Azure DevOps", slug: "cloudways", color: "2C39BD" },
-  cloudways: { name: "Cloudways", slug: "cloudways", color: "2C39BD" },
-  docker: { name: "Docker", slug: "docker", color: "2496ED" },
-  kubernetes: { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
-  helm: { name: "Helm", slug: "helm", color: "0F1689" },
-  argocd: { name: "ArgoCD", slug: "argo", color: "EF7B4D" },
-  grafana: { name: "Grafana", slug: "grafana", color: "F46800" },
-  prometheus: { name: "Prometheus", slug: "prometheus", color: "E6522C" },
-  elastic: { name: "ELK", slug: "elastic", color: "005571" },
-  cloudwatch: { name: "CloudWatch", slug: "amazoncloudwatch", color: "FF4F8B" },
+  // DevOps & CI/CD
+  terraform:      { name: "Terraform",       slug: "terraform",        color: "7B42BC" },
+  ansible:        { name: "Ansible",          slug: "ansible",          color: "EE0000" },
+  jenkins:        { name: "Jenkins",          slug: "jenkins",          color: "D24939" },
+  githubactions:  { name: "GitHub Actions",   slug: "githubactions",    color: "2088FF" },
+  azuredevops:    { name: "Azure DevOps",     slug: "azuredevops",      color: "0078D4" },
+  docker:         { name: "Docker",           slug: "docker",           color: "2496ED" },
+  kubernetes:     { name: "Kubernetes",       slug: "kubernetes",       color: "326CE5" },
+  helm:           { name: "Helm",             slug: "helm",             color: "0F1689" },
+  argocd:         { name: "ArgoCD",           slug: "argo",             color: "EF7B4D" },
+  // Observability
+  grafana:        { name: "Grafana",          slug: "grafana",          color: "F46800" },
+  prometheus:     { name: "Prometheus",       slug: "prometheus",       color: "E6522C" },
+  elastic:        { name: "ELK",              slug: "elastic",          color: "005571" },
+  cloudwatch:     { name: "CloudWatch",       slug: "amazoncloudwatch", color: "FF4F8B" },
+  // AWS
+  awslambda:      { name: "Lambda",           slug: "awslambda",        color: "FF9900" },
+  amazons3:       { name: "S3",               slug: "amazons3",         color: "569A31" },
+  amazonrds:      { name: "RDS / Aurora",     slug: "amazonrds",        color: "527FFF" },
+  amazoneks:      { name: "EKS",              slug: "amazoneks",        color: "FF9900" },
+  amazonecs:      { name: "ECS",              slug: "amazonecs",        color: "FF9900" },
+  amazoncloudfront: { name: "CloudFront",     slug: "amazoncloudfront", color: "FF9900" },
+  // Azure
+  microsoftazure: { name: "Azure",            slug: "microsoftazure",   color: "0078D4" },
+  azurekubernetesservice: { name: "AKS",      slug: "microsoftazure",   color: "0078D4" },
+  powerplatform:  { name: "Power Platform",   slug: "microsoftazure",   color: "742774" },
+  // Data & AI
+  apachekafka:    { name: "Kafka",            slug: "apachekafka",      color: "231F20" },
+  snowflake:      { name: "Snowflake",        slug: "snowflake",        color: "29B5E8" },
+  databricks:     { name: "Databricks",       slug: "databricks",       color: "FF3621" },
+  powerbi:        { name: "Power BI",         slug: "powerbi",          color: "F2C811" },
+  apachespark:    { name: "Spark",            slug: "apachespark",      color: "E25A1C" },
+  // Security
+  vault:          { name: "Vault",            slug: "vault",            color: "FFD814" },
+  snyk:           { name: "Snyk",             slug: "snyk",             color: "4C4A73" },
 };
 
 export const ALL_TOOLS = Object.values(TOOLS);
